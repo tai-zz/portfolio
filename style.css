@@ -1,0 +1,397 @@
+/* =========================
+   RESET & BASE
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0d0d0d;
+  color: #ffffff;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  line-height: 1.6;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+/* =========================
+   ANIMAÇÕES
+========================= */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   HERO (HOME)
+========================= */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  animation: fadeIn 1.5s ease;
+}
+
+.hero h1 {
+  font-size: 64px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.hero p {
+  color: #bfbfbf;
+  font-size: 18px;
+  max-width: 500px;
+}
+
+/* =========================
+   BOTÕES
+========================= */
+.botao {
+  background: none;
+  color: #ffffff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.botao:hover {
+  background-color: #ffffff;
+  color: #0d0d0d;
+}
+
+/* =========================
+   LAYOUT GERAL
+========================= */
+.secao {
+  padding: 100px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  border-top: 1px solid #1a1a1a;
+}
+
+.secao h2 {
+  margin-bottom: 20px;
+}
+
+/* =========================
+   HEADER / NAVEGAÇÃO
+========================= */
+.topo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.voltar {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  opacity: 0.7;
+  transition: 0.3s;
+  font-size: 48px;
+}
+
+.voltar:hover {
+  opacity: 1;
+}
+
+.menu {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  display: flex;
+  gap: 30px;
+}
+
+.menu a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+.menu a:hover {
+  opacity: 1;
+}
+
+.menu a.ativo {
+  opacity: 1;
+  border-bottom: 1px solid #ffffff;
+}
+
+/* =========================
+   PROJETOS
+========================= */
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: none;
+  padding: 20px;
+  width: 250px;
+  border: 1px solid #1a1a1a;
+  transition: 0.3s;
+}
+
+.card:hover {
+  border: 1px solid #ffffff;
+}
+
+.card p {
+  color: #bfbfbf;
+  margin: 10px 0;
+}
+
+.card a {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* =========================
+   SOBRE
+========================= */
+.sobre-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.foto,
+.foto-perfil {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid #1a1a1a;
+
+  display: block;
+  margin: 0 auto;
+}
+
+.texto {
+  max-width: 400px;
+  text-align: left;
+}
+
+/* =========================
+   CONTATO
+========================= */
+.contato {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.contato-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 40px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.contato-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid #1a1a1a;
+  padding: 12px 0;
+  font-size: 20px;
+}
+
+.contato-item span {
+  color: #bfbfbf;
+}
+
+.contato-item a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: 0.3s;
+  word-break: break-all;
+}
+
+.contato-item a:hover {
+  opacity: 0.7;
+}
+
+.email-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.email-box button {
+  background: none;
+  border: 1px solid #1a1a1a;
+  color: #ffffff;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.email-box button:hover {
+  border: 1px solid #ffffff;
+}
+
+.btn-copiar img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+    background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.btn-copiar:focus {
+  outline: none;
+}
+
+/* =========================
+   TOAST
+========================= */
+#toast {
+  position: fixed;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  background: #1a1a1a;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 5px;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
+  font-size: 14px;
+}
+
+#toast.show {
+  opacity: 1;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.footer {
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid #1a1a1a;
+  font-size: 14px;
+  color: #bfbfbf;
+  margin-top: 250px;
+}
+
+.footer a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sobre-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .texto {
+    text-align: center;
+  }
+}
+
+/* =========================
+   SKYFALL
+========================= */
+
+.estrelas span {
+  position: absolute;
+  width: 2px;
+  height: 60px;
+  background: linear-gradient(transparent, white);
+  animation: cair 4s linear infinite;
+}
+
+/* cada estrela */
+.estrelas::before,
+.estrelas::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 80px;
+  background: linear-gradient(transparent, white);
+  opacity: 0.7;
+  animation: cair 3s linear infinite;
+}
+
+/* posições diferentes */
+.estrelas::after {
+  left: 60%;
+  animation-delay: 1.5s;
+}
+
+.estrelas::before {
+  left: 30%;
+}
+
+/* animação */
+@keyframes cair {
+  0% {
+    transform: translateY(-100px) translateX(0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) translateX(50px);
+    opacity: 0;
+  }
+}

@@ -1,0 +1,68 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfólio | Tai</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="script.js"></script>
+</head>
+
+<div class="estrelas">
+  <span style="left:10%; animation-delay:0s;"></span>
+  <span style="left:25%; animation-delay:1s;"></span>
+  <span style="left:50%; animation-delay:2s;"></span>
+  <span style="left:75%; animation-delay:0.5s;"></span>
+  <span style="left:15%; animation-delay:0s;"></span>
+  <span style="left:30%; animation-delay:1s;"></span>
+  <span style="left:55%; animation-delay:2s;"></span>
+  <span style="left:85%; animation-delay:0.5s;"></span>
+</div>
+
+<body>
+
+      <!-- BOTÃO VOLTAR -->
+  <div class="topo">
+    <a href="index.html" class="voltar">←</a>
+  </div>
+
+  <nav class="menu">
+    <a href="index.html">Início</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="projetos.html">Projetos</a>
+    <a href="contato.html">Contato</a>
+  </nav>
+
+<section class="secao contato">
+  <h2>Contato</h2>
+
+  <div class="contato-container">
+
+    <div class="contato-item">
+      <span><i class="fab fa-github"></i> GitHub</span>
+      <a href="https://github.com/tai-zz" target="_blank">github.com/tai-zz</a>
+    </div>
+
+    <div class="contato-item">
+      <span><i class="fas fa-envelope"></i> Email</span>
+      <div class="email-box">
+        <a id="email">joaoeduardopino@gmail.com</a>
+        <div onclick="copiarEmail()" class="btn-copiar">
+          <img src="copiar.png" alt="Copiar">
+        </div>
+      </div>
+    </div>
+
+    <div class="contato-item">
+      <span><i class="fab fa-instagram"></i> Instagram</span>
+      <a href="https://www.instagram.com/zsuiix_/" target="_blank">@zsuiix_</a>
+    </div>
+
+  </div>
+</section>
+
+  <footer class="footer">
+    <p>© 2026 - Tai</p>
+    <a href="https://github.com/tai-zz" target="_blank">GitHub</a>
+  </footer>
+  <div id="toast">Email copiado</div>
+</body>
