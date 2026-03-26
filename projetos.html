@@ -6,89 +6,134 @@
   <title>Projetos | Tai</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="script.js" defer></script>
 </head>
-
-<div class="estrelas">
-  <span style="left:10%; animation-delay:0s;"></span>
-  <span style="left:25%; animation-delay:1s;"></span>
-  <span style="left:50%; animation-delay:2s;"></span>
-  <span style="left:75%; animation-delay:0.5s;"></span>
-  <span style="left:15%; animation-delay:0s;"></span>
-  <span style="left:30%; animation-delay:1s;"></span>
-  <span style="left:55%; animation-delay:2s;"></span>
-  <span style="left:85%; animation-delay:0.5s;"></span>
-</div>
 <body>
 
-       <nav class="menu">
-     <a href="index.html">Início</a>
-     <a href="sobre.html">Sobre</a>
-     <a href="projetos.html">Projetos</a>
-     <a href="contato.html">Contato</a>
-     </nav>
+  <nav class="menu" aria-label="Navegação principal">
+    <a href="index.html">Início</a>
+    <a href="projetos.html">Projetos</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="contato.html">Contato</a>
+  </nav>
 
-  <!-- BOTÃO VOLTAR -->
   <div class="topo">
-    <a href="index.html" class="voltar">←</a>
+    <a href="index.html" class="voltar" aria-label="Voltar para a página inicial">←</a>
   </div>
 
-  <section class="secao">
+  <a
+    href="sobre.html"
+    class="page-door page-door-right"
+    aria-label="Ir para a página Sobre"
+  >
+    <span class="page-door-frame"></span>
+    <span class="page-door-panel"></span>
+    <span class="page-door-knob"></span>
+    <span class="page-door-label">Sobre</span>
+  </a>
 
-    <h2>Projetos</h2>
-
-    <p4>COMING SOON</p4>
-
-     <div class="cards">
-
-      <div class="card">
-        <h3>LoginDesktopUniplus</h3>
-        <p>
-Aplicação desktop baseada em interface web que permite instalação local e autenticação de usuários diretamente pelo sistema.
-          O projeto explora a integração entre tecnologias web e ambiente desktop, oferecendo uma experiência prática, rápida e acessível.</p>
-        <a href="https://github.com/tai-zz/LoginDesktopUniplus-" target="_blank">Ver no GitHub</a>
+  <div class="cat-walk cat-projects" aria-hidden="true">
+    <div class="cat">
+      <span class="cat-tail"></span>
+      <span class="cat-body"></span>
+      <span class="cat-head"></span>
+      <span class="cat-ear ear-left"></span>
+      <span class="cat-ear ear-right"></span>
+      <span class="cat-leg leg-front"></span>
+      <span class="cat-leg leg-mid-front"></span>
+      <span class="cat-leg leg-mid-back"></span>
+      <span class="cat-leg leg-back"></span>
     </div>
+  </div>
 
-    <div class="card">
-        <h3>BoldtSenhaTecnica</h3>
-        <p>Aplicação de geração de senha técnica com interface moderna e responsiva, desenvolvida em JavaScript. 
-          O sistema simula uma senha calculada a partir de data autenticação baseada em códigos dinâmicos, com foco em experiência do usuário e integração entre lógica e interface.</p>
-        <a href="https://github.com/tai-zz/BoldtSenhaTecnica" target="_blank">Ver no GitHub</a>
-    </div> 
-    <div class="card">
-        <h3>PostoGasolina</h3>
-        <p>Sistema desktop desenvolvido para gerenciamento completo de postos de combustível, permitindo o controle de usuários, cadastro de postos, coleta de preços e registro de revendas de combustíveis.</p>
-        <a href="https://github.com/tai-zz/PostoGasolina" target="_blank">Ver no GitHub</a>
-    </div>  
+  <main>
+    <section class="projects-page">
+      <section class="room-scene" aria-label="Sala de estar ilustrada">
+        <div class="room-copy">
+          <p class="hero-eyebrow">Inside</p>
+          <h2>Projetos</h2>
+          <p>Entramos na casa. Agora a sala apresenta os projetos em um ambiente simples, acolhedor e no mesmo traço visual.</p>
+        </div>
 
-    <!--<div class="cards">
+        <div class="living-room" aria-hidden="true">
+          <div class="room-frame">
+            <div class="picture-frame">
+              <span class="picture-line picture-line-a"></span>
+              <span class="picture-line picture-line-b"></span>
+            </div>
 
-      <div class="card">
-        <h3>Projeto 1</h3>
-        <p>Descrição simples do projeto.</p>
-        <a href="#" target="_blank">Ver no GitHub</a>
-      </div>
+            <div class="lamp">
+              <span class="lamp-shade"></span>
+              <span class="lamp-pole"></span>
+              <span class="lamp-base"></span>
+            </div>
 
-      <div class="card">
-        <h3>Projeto 2</h3>
-        <p>Descrição simples do projeto.</p>
-        <a href="#" target="_blank">Ver no GitHub</a>
-      </div>
+            <div class="plant">
+              <span class="plant-leaf leaf-one"></span>
+              <span class="plant-leaf leaf-two"></span>
+              <span class="plant-leaf leaf-three"></span>
+              <span class="plant-pot"></span>
+            </div>
 
-      <div class="card">
-        <h3>Projeto 3</h3>
-        <p>Descrição simples do projeto.</p>
-        <a href="#" target="_blank">Ver no GitHub</a>
-      </div>
+            <div class="sofa">
+              <span class="sofa-back"></span>
+              <span class="sofa-seat"></span>
+              <span class="sofa-arm left"></span>
+              <span class="sofa-arm right"></span>
+              <span class="sofa-leg leg-one"></span>
+              <span class="sofa-leg leg-two"></span>
+            </div>
 
-    </div>
-    --->
-  </section>
+            <div class="coffee-table">
+              <span class="table-top"></span>
+              <span class="table-leg left"></span>
+              <span class="table-leg right"></span>
+              <span class="table-book"></span>
+            </div>
+
+            <div class="room-floor"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="secao projects-list">
+        <p class="coming-soon">Projects</p>
+
+        <div class="cards">
+          <div class="card">
+            <h3>LoginDesktopUniplus</h3>
+            <p>
+              Aplicação desktop baseada em interface web que permite instalação local e autenticação de usuários diretamente pelo sistema.
+              O projeto explora a integração entre tecnologias web e ambiente desktop, oferecendo uma experiência prática, rápida e acessível.
+            </p>
+            <a href="https://github.com/tai-zz/LoginDesktopUniplus-" target="_blank" rel="noopener noreferrer">Ver no GitHub</a>
+          </div>
+
+          <div class="card">
+            <h3>BoldtSenhaTecnica</h3>
+            <p>
+              Aplicação de geração de senha técnica com interface moderna e responsiva, desenvolvida em JavaScript.
+              O sistema simula uma senha calculada a partir de data de autenticação baseada em códigos dinâmicos, com foco em experiência do usuário e integração entre lógica e interface.
+            </p>
+            <a href="https://github.com/tai-zz/BoldtSenhaTecnica" target="_blank" rel="noopener noreferrer">Ver no GitHub</a>
+          </div>
+
+          <div class="card">
+            <h3>PostoGasolina</h3>
+            <p>
+              Sistema desktop desenvolvido para gerenciamento completo de postos de combustível, permitindo o controle de usuários,
+              cadastro de postos, coleta de preços e registro de revendas de combustíveis.
+            </p>
+            <a href="https://github.com/tai-zz/PostoGasolina" target="_blank" rel="noopener noreferrer">Ver no GitHub</a>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
 
   <footer class="footer">
-    <p>© 2026 - Tai</p>
-    <a href="https://github.com/tai-zz" target="_blank">GitHub</a>
+    <p>&copy; 2026 - Tai</p>
+    <a href="https://github.com/tai-zz" target="_blank" rel="noopener noreferrer">GitHub</a>
   </footer>
-
-
 </body>
 </html>
