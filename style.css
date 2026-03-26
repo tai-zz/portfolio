@@ -12,7 +12,8 @@ body {
   color: #ffffff;
   font-family: 'Segoe UI', Arial, sans-serif;
   line-height: 1.6;
-
+  position: relative;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -20,59 +21,380 @@ body {
 
 main {
   flex: 1;
+  display: flex;
 }
 
 /* =========================
-   ANIMAÇÕES
+   ANIMACOES
 ========================= */
 @keyframes fadeIn {
   from {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
+@keyframes windowOpen {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  45% {
+    transform: scale(0.94);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: scale(1.14);
+    opacity: 0;
+  }
+}
+
+@keyframes cair {
+  0% {
+    transform: translateY(-140px) translateX(-8px);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(110vh) translateX(36px);
+    opacity: 0;
+  }
+}
+
+@keyframes lightningFlash {
+  0%,
+  82%,
+  100% {
+    opacity: 0;
+  }
+
+  83% {
+    opacity: 0.12;
+  }
+
+  84% {
+    opacity: 0.35;
+  }
+
+  85% {
+    opacity: 0.08;
+  }
+
+  86% {
+    opacity: 0.44;
+  }
+
+  87% {
+    opacity: 0.18;
+  }
+
+  88% {
+    opacity: 0.5;
+  }
+
+  89% {
+    opacity: 0;
+  }
+}
+
+@keyframes lightningStrike {
+  0%,
+  80%,
+  100% {
+    opacity: 0;
+  }
+
+  81% {
+    opacity: 0.2;
+  }
+
+  82% {
+    opacity: 1;
+  }
+
+  83% {
+    opacity: 0.28;
+  }
+
+  84% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 0.15;
+  }
+
+  86% {
+    opacity: 0.92;
+  }
+
+  87% {
+    opacity: 0;
+  }
+}
+
 /* =========================
    HERO (HOME)
 ========================= */
-.hero {
-  height: 100vh;
+.home-scene {
+  width: 100%;
+  min-height: 100vh;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 120px 20px 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-copy h1 {
+  font-size: 72px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.hero-copy p {
+  color: #cfcfcf;
+  font-size: 18px;
+  max-width: 560px;
+}
+
+.window-stage {
+  width: min(980px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  justify-content: center;
+  position: relative;
+}
+
+.home-window {
+  width: min(620px, 88vw);
+  aspect-ratio: 1 / 1.08;
+  position: relative;
+  display: grid;
+  place-items: center;
+  filter: none;
+}
+
+.window-backdrop {
+  position: absolute;
+  inset: 4% 4% 10%;
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.5), transparent 32%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(241, 241, 241, 0.98));
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.25);
+  pointer-events: none;
+}
+
+.window-frame {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 14px 1fr;
+  padding: 24px 24px 46px;
+}
+
+.window-frame::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 2px solid #111111;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.window-panel {
+  position: relative;
+  border: 2px solid #111111;
+  border-radius: 2px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  transform-style: preserve-3d;
+  transition: transform 0.9s ease, opacity 0.9s ease;
+}
+
+.panel-left {
+  transform-origin: left center;
+}
+
+.panel-right {
+  transform-origin: right center;
+}
+
+.window-divider {
+  width: 14px;
+  margin: 0 auto;
+  border-radius: 1px;
+  background: #111111;
+  box-shadow: none;
+}
+
+.pane-grid {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+}
+
+.pane {
+  position: relative;
+  overflow: hidden;
+  border: 2px solid #111111;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: inset 0 0 0 1px rgba(17, 17, 17, 0.28);
+}
+
+.pane::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1), transparent 35%);
+}
+
+.pane-shine {
+  position: absolute;
+  width: 44px;
+  height: 2px;
+  background: #111111;
+  transform: rotate(-45deg);
+  transform-origin: center;
+  box-shadow: none;
+}
+
+.shine-a {
+  top: 26%;
+  right: 24%;
+}
+
+.shine-b {
+  top: 46%;
+  right: 18%;
+  width: 38px;
+}
+
+.window-sill {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  width: 112%;
+  height: 12px;
+  transform: translateX(-50%);
+  border: 2px solid #111111;
+  border-radius: 4px;
+  background: #f4f0ea;
+}
+
+.window-sill::before,
+.window-sill::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 70px;
+  height: 2px;
+  background: #111111;
+}
+
+.window-sill::before {
+  right: calc(100% + 10px);
+}
+
+.window-sill::after {
+  left: calc(100% + 10px);
+}
+
+.home-window.is-opening .panel-left {
+  transform: perspective(1200px) rotateY(-72deg);
+}
+
+.home-window.is-opening .panel-right {
+  transform: perspective(1200px) rotateY(72deg);
+}
+
+.home-window.is-opening .window-divider,
+.home-window.is-opening .window-sill,
+.home-window.is-opening .window-frame::before {
+  opacity: 0.85;
+}
+
+.hero {
+  min-height: 100%;
+  display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 20px;
   text-align: center;
   animation: fadeIn 1.5s ease;
+  padding: 48px 32px;
+  position: relative;
+  z-index: 1;
 }
 
-.hero h1 {
-  font-size: 64px;
-  font-weight: 600;
-  letter-spacing: 2px;
+.hero-home {
+  width: min(620px, 88vw);
+  min-height: 0;
+  padding: 0;
+  position: static;
+  transform: none;
 }
 
 .hero p {
-  color: #bfbfbf;
+  color: #cfcfcf;
   font-size: 18px;
   max-width: 500px;
 }
 
+.hero-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 12px;
+  color: #9aa0b8;
+}
+
 /* =========================
-   BOTÕES
+   BOTOES
 ========================= */
 .botao {
-  background: none;
+  background: transparent;
   color: #ffffff;
   padding: 10px 20px;
   text-decoration: none;
-  border: 1px solid #ffffff;
-  border-radius: 5px;
+  border: 2px solid #ffffff;
+  border-radius: 4px;
   transition: 0.3s;
+  font: inherit;
+  cursor: pointer;
 }
 
 .botao:hover {
@@ -96,18 +418,18 @@ main {
 }
 
 /* =========================
-   HEADER / NAVEGAÇÃO
+   HEADER / NAVEGACAO
 ========================= */
 .topo {
   position: absolute;
   top: 20px;
   left: 20px;
+  z-index: 2;
 }
 
 .voltar {
   color: #ffffff;
   text-decoration: none;
-  font-size: 14px;
   opacity: 0.7;
   transition: 0.3s;
   font-size: 48px;
@@ -123,6 +445,7 @@ main {
   right: 40px;
   display: flex;
   gap: 30px;
+  z-index: 2;
 }
 
 .menu a {
@@ -174,17 +497,816 @@ main {
   text-decoration: underline;
 }
 
+.coming-soon {
+  margin-bottom: 30px;
+  color: #bfbfbf;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.projects-page {
+  width: 100%;
+}
+
+.projects-list {
+  border-top: none;
+  padding-top: 30px;
+}
+
+.page-door {
+  position: fixed;
+  right: 22px;
+  top: 50%;
+  width: 86px;
+  height: 190px;
+  transform: translateY(-50%);
+  display: block;
+  text-decoration: none;
+  z-index: 3;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.page-door:hover {
+  transform: translateY(calc(-50% - 4px));
+}
+
+.page-door:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 6px;
+}
+
+.page-door-frame {
+  position: absolute;
+  inset: 0;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 38px 38px 4px 4px;
+}
+
+.page-door-panel {
+  position: absolute;
+  inset: 12px 10px 28px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 28px 28px 2px 2px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.page-door-knob {
+  position: absolute;
+  right: 18px;
+  top: 88px;
+  width: 9px;
+  height: 9px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 50%;
+}
+
+.page-door-label {
+  position: absolute;
+  left: 50%;
+  bottom: 2px;
+  transform: translateX(-50%);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+@keyframes catTravel {
+  0% {
+    transform: translateX(-12vw);
+  }
+
+  100% {
+    transform: translateX(112vw);
+  }
+}
+
+@keyframes catBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes catLegFront {
+  0%,
+  100% {
+    transform: rotate(18deg);
+  }
+
+  50% {
+    transform: rotate(-18deg);
+  }
+}
+
+@keyframes catLegBack {
+  0%,
+  100% {
+    transform: rotate(-18deg);
+  }
+
+  50% {
+    transform: rotate(18deg);
+  }
+}
+
+@keyframes catTail {
+  0%,
+  100% {
+    transform: rotate(24deg);
+  }
+
+  50% {
+    transform: rotate(40deg);
+  }
+}
+
+@keyframes birdBob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes birdWingLeft {
+  0%,
+  100% {
+    transform: rotate(-18deg);
+  }
+
+  50% {
+    transform: rotate(-4deg);
+  }
+}
+
+@keyframes birdWingRight {
+  0%,
+  100% {
+    transform: rotate(18deg);
+  }
+
+  50% {
+    transform: rotate(4deg);
+  }
+}
+
+@keyframes birdFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes birdWingLeftFast {
+  0%,
+  100% {
+    transform: rotate(-48deg);
+  }
+
+  50% {
+    transform: rotate(16deg);
+  }
+}
+
+@keyframes birdWingRightFast {
+  0%,
+  100% {
+    transform: rotate(48deg);
+  }
+
+  50% {
+    transform: rotate(-16deg);
+  }
+}
+
+@keyframes birdPeck {
+  0%,
+  100% {
+    transform: rotate(0deg) translateY(0);
+  }
+
+  35% {
+    transform: rotate(12deg) translateY(4px);
+  }
+
+  70% {
+    transform: rotate(-4deg) translateY(1px);
+  }
+}
+
+@keyframes birdScratchLeft {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(18deg);
+  }
+}
+
+@keyframes birdScratchRight {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(-18deg);
+  }
+}
+
+.cat-walk {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 620px;
+  bottom: auto;
+  z-index: 2;
+  pointer-events: none;
+  animation: catTravel 24s linear infinite;
+}
+
+.cat-projects {
+  animation-duration: 24s;
+}
+
+.cat-about {
+  animation-duration: 28s;
+  animation-delay: -8s;
+}
+
+.cat {
+  position: relative;
+  width: 92px;
+  height: 48px;
+  animation: catBounce 0.9s ease-in-out infinite;
+}
+
+.cat-body {
+  position: absolute;
+  left: 18px;
+  bottom: 14px;
+  width: 42px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 14px 16px 10px 10px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.cat-head {
+  position: absolute;
+  left: 58px;
+  bottom: 22px;
+  width: 18px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.cat-ear {
+  position: absolute;
+  bottom: 36px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid rgba(255, 255, 255, 0.92);
+}
+
+.ear-left {
+  left: 60px;
+  border-left: 2px solid rgba(255, 255, 255, 0.92);
+  transform: rotate(-18deg);
+}
+
+.ear-right {
+  left: 69px;
+  border-right: 2px solid rgba(255, 255, 255, 0.92);
+  transform: rotate(18deg);
+}
+
+.cat-tail {
+  position: absolute;
+  left: 8px;
+  bottom: 24px;
+  width: 20px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.92);
+  transform-origin: right center;
+  animation: catTail 0.9s ease-in-out infinite;
+}
+
+.cat-tail::before {
+  content: "";
+  position: absolute;
+  left: -8px;
+  top: -8px;
+  width: 10px;
+  height: 10px;
+  border-left: 2px solid rgba(255, 255, 255, 0.92);
+  border-top: 2px solid rgba(255, 255, 255, 0.92);
+  border-top-left-radius: 10px;
+}
+
+.cat-leg {
+  position: absolute;
+  bottom: 0;
+  width: 2px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.92);
+  transform-origin: top center;
+}
+
+.leg-front {
+  left: 60px;
+  animation: catLegFront 0.9s ease-in-out infinite;
+}
+
+.leg-mid-front {
+  left: 48px;
+  animation: catLegBack 0.9s ease-in-out infinite;
+}
+
+.leg-mid-back {
+  left: 34px;
+  animation: catLegFront 0.9s ease-in-out infinite;
+}
+
+.leg-back {
+  left: 22px;
+  animation: catLegBack 0.9s ease-in-out infinite;
+}
+
+.bird-outside {
+  position: fixed;
+  width: 62px;
+  height: 34px;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.96;
+  left: 0;
+  top: 0;
+  --bird-x: 0px;
+  --bird-y: 0px;
+  --bird-scale: 1;
+  --bird-direction: 1;
+  transform: translate3d(var(--bird-x), var(--bird-y), 0) scale(var(--bird-scale)) scaleX(var(--bird-direction));
+  transform-origin: center center;
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease;
+}
+
+.bird-outside.is-hidden {
+  opacity: 0;
+}
+
+.bird-outside.is-flying {
+  transition-duration: 2.6s;
+}
+
+.bird-outside.is-flying .bird-figure {
+  animation: birdFloat 0.55s ease-in-out infinite;
+}
+
+.bird-outside.is-landed .bird-figure {
+  animation: birdBob 1.8s ease-in-out infinite;
+}
+
+.bird-outside.look-left {
+  --bird-direction: -1;
+}
+
+.bird-outside.look-right {
+  --bird-direction: 1;
+}
+
+.bird-outside.is-pecking .bird-figure {
+  animation: birdPeck 0.42s ease-in-out 2;
+}
+
+.bird-outside.is-scratching .bird-leg-left {
+  animation: birdScratchLeft 0.32s ease-in-out 4;
+}
+
+.bird-outside.is-scratching .bird-leg-right {
+  animation: birdScratchRight 0.32s ease-in-out 4;
+}
+
+.bird-figure {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.bird-body {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  width: 24px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 14px 14px 12px 12px;
+}
+
+.bird-head {
+  position: absolute;
+  left: 32px;
+  top: 8px;
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 50%;
+}
+
+.bird-beak {
+  position: absolute;
+  left: 44px;
+  top: 12px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid rgba(255, 255, 255, 0.92);
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+}
+
+.bird-eye {
+  position: absolute;
+  left: 39px;
+  top: 13px;
+  width: 2px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 50%;
+}
+
+.bird-tail {
+  position: absolute;
+  left: 6px;
+  top: 14px;
+  width: 12px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.92);
+  transform: rotate(20deg);
+  transform-origin: right center;
+}
+
+.bird-leg {
+  position: absolute;
+  top: 26px;
+  width: 2px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.bird-leg-left {
+  left: 24px;
+}
+
+.bird-leg-right {
+  left: 31px;
+}
+
+.bird-wing {
+  position: absolute;
+  top: 12px;
+  width: 14px;
+  height: 10px;
+  border-top: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 18px 18px 0 0;
+  transform-origin: center bottom;
+}
+
+.wing-left {
+  left: 17px;
+  animation: birdWingLeft 1.2s ease-in-out infinite;
+}
+
+.wing-right {
+  left: 23px;
+  animation: birdWingRight 1.2s ease-in-out infinite;
+}
+
+.bird-outside.is-flying .wing-left {
+  animation: birdWingLeftFast 0.18s linear infinite;
+}
+
+.bird-outside.is-flying .wing-right {
+  animation: birdWingRightFast 0.18s linear infinite;
+}
+
+.bird-outside.is-landed .wing-left,
+.bird-outside.is-landed .wing-right {
+  animation-duration: 1.8s;
+  opacity: 0.7;
+}
+
 /* =========================
    SOBRE
 ========================= */
+.about-page {
+  width: 100%;
+}
+
+.about-text-section {
+  border-top: none;
+  padding-top: 30px;
+}
+
+.bedroom-scene {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  padding: 130px 20px 20px;
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) 1fr;
+  align-items: center;
+  gap: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.bedroom-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.bedroom-copy h2 {
+  font-size: 56px;
+  font-weight: 600;
+}
+
+.bedroom-copy p:last-child {
+  color: #cfcfcf;
+  max-width: 320px;
+}
+
+.bedroom {
+  min-height: 500px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.bedroom-frame {
+  width: min(720px, 100%);
+  height: 450px;
+  position: relative;
+}
+
+.bedroom-frame::before {
+  content: "";
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  bottom: 28px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.poster {
+  position: absolute;
+  top: 42px;
+  right: 90px;
+  width: 138px;
+  height: 178px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+}
+
+.poster-line {
+  position: absolute;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.92);
+  transform: rotate(-42deg);
+  transform-origin: left center;
+}
+
+.line-one {
+  top: 54px;
+  left: 34px;
+  width: 42px;
+}
+
+.line-two {
+  top: 86px;
+  left: 52px;
+  width: 28px;
+}
+
+.bed {
+  position: absolute;
+  left: 50%;
+  bottom: 54px;
+  width: 390px;
+  height: 210px;
+  transform: translateX(-44%);
+}
+
+.bed-headboard {
+  position: absolute;
+  left: 0;
+  top: 28px;
+  width: 52px;
+  height: 142px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 12px 12px 4px 4px;
+}
+
+.bed-mattress {
+  position: absolute;
+  right: 0;
+  bottom: 32px;
+  width: 340px;
+  height: 106px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 10px;
+}
+
+.bed-pillow {
+  position: absolute;
+  top: 48px;
+  width: 74px;
+  height: 34px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 10px;
+  background: transparent;
+}
+
+.pillow-left {
+  left: 84px;
+}
+
+.pillow-right {
+  left: 166px;
+}
+
+.bed-blanket {
+  position: absolute;
+  right: 12px;
+  bottom: 42px;
+  width: 226px;
+  height: 74px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 8px;
+}
+
+.bed-leg {
+  position: absolute;
+  bottom: 0;
+  width: 2px;
+  height: 34px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.bed .leg-left {
+  left: 92px;
+}
+
+.bed .leg-right {
+  right: 36px;
+}
+
+.nightstand {
+  position: absolute;
+  left: 84px;
+  bottom: 56px;
+  width: 90px;
+  height: 120px;
+}
+
+.nightstand-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 6px;
+}
+
+.nightstand-body {
+  position: absolute;
+  top: 14px;
+  left: 8px;
+  width: 74px;
+  height: 84px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+}
+
+.nightstand-drawer {
+  position: absolute;
+  top: 44px;
+  left: 18px;
+  width: 54px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.nightstand-knob {
+  position: absolute;
+  top: 38px;
+  left: 44px;
+  width: 8px;
+  height: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 50%;
+}
+
+.bed-lamp {
+  position: absolute;
+  left: 92px;
+  bottom: 154px;
+  width: 64px;
+  height: 90px;
+}
+
+.bed-lamp-shade {
+  position: absolute;
+  top: 0;
+  left: 8px;
+  width: 46px;
+  height: 24px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  clip-path: polygon(12% 0, 88% 0, 100% 100%, 0 100%);
+}
+
+.bed-lamp-pole {
+  position: absolute;
+  top: 24px;
+  left: 30px;
+  width: 2px;
+  height: 42px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.bed-lamp-base {
+  position: absolute;
+  bottom: 0;
+  left: 18px;
+  width: 26px;
+  height: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 8px;
+}
+
+.rug {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  width: 270px;
+  height: 54px;
+  transform: translateX(-28%);
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 999px;
+}
+
+.rug-line {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.rug-a {
+  top: 18px;
+}
+
+.rug-b {
+  bottom: 16px;
+}
+
+.bedroom-floor {
+  position: absolute;
+  left: 14%;
+  right: 14%;
+  bottom: 0;
+  height: 14px;
+  border-top: 2px solid rgba(255, 255, 255, 0.92);
+}
+
+.bedroom-door {
+  right: 26px;
+}
+
 .sobre-container {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 40px;
-  flex-wrap: wrap;
-
-  max-width: 900px;
+  flex-wrap: nowrap;
+  max-width: 980px;
   margin: 0 auto;
 }
 
@@ -195,14 +1317,668 @@ main {
   object-fit: cover;
   border-radius: 50%;
   border: 1px solid #1a1a1a;
-
   display: block;
   margin: 0 auto;
 }
 
 .texto {
-  max-width: 400px;
+  max-width: 520px;
   text-align: left;
+}
+
+/* =========================
+   CONTATO / QUINTAL
+========================= */
+.contact-page {
+  width: 100%;
+}
+
+.contact-section {
+  border-top: none;
+  padding-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.yard-scene {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  padding: 130px 20px 20px;
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) 1fr;
+  align-items: center;
+  gap: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.yard-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.yard-copy h2 {
+  font-size: 56px;
+  font-weight: 600;
+}
+
+.yard-copy p:last-child {
+  color: #cfcfcf;
+  max-width: 320px;
+}
+
+.contact-section .contato-container {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.contact-section .contato-item {
+  justify-content: center;
+}
+
+.yard {
+  min-height: 500px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.yard-frame {
+  width: min(720px, 100%);
+  height: 430px;
+  position: relative;
+}
+
+.fence {
+  position: absolute;
+  bottom: 64px;
+  width: 190px;
+  height: 118px;
+  border-top: 2px solid rgba(255, 255, 255, 0.92);
+}
+
+.fence::before,
+.fence::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  bottom: 0;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow:
+    34px 0 0 rgba(255, 255, 255, 0.92),
+    68px 0 0 rgba(255, 255, 255, 0.92),
+    102px 0 0 rgba(255, 255, 255, 0.92),
+    136px 0 0 rgba(255, 255, 255, 0.92);
+}
+
+.fence::after {
+  display: none;
+}
+
+.fence-left {
+  left: 24px;
+}
+
+.fence-right {
+  right: 24px;
+}
+
+.gate-door {
+  position: absolute;
+  left: 50%;
+  bottom: 52px;
+  width: 230px;
+  height: 250px;
+  transform: translateX(-50%);
+}
+
+.door-frame {
+  position: absolute;
+  inset: 0;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-bottom: none;
+  border-radius: 110px 110px 0 0;
+}
+
+.door-leaf {
+  position: absolute;
+  bottom: 0;
+  width: 102px;
+  height: 198px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.door-leaf.left {
+  left: 10px;
+  border-radius: 90px 12px 0 0;
+}
+
+.door-leaf.right {
+  right: 10px;
+  border-radius: 12px 90px 0 0;
+}
+
+.door-knob {
+  position: absolute;
+  right: 28px;
+  top: 120px;
+  width: 10px;
+  height: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 50%;
+}
+
+.path {
+  position: absolute;
+  bottom: -40px;
+  width: 150px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.path-left {
+  right: calc(100% + 10px);
+}
+
+.path-right {
+  left: calc(100% + 10px);
+}
+
+.bush {
+  position: absolute;
+  bottom: 56px;
+  width: 90px;
+  height: 70px;
+}
+
+.bush-left {
+  left: 210px;
+}
+
+.bush-right {
+  right: 210px;
+}
+
+.bush-leaf {
+  position: absolute;
+  bottom: 0;
+  width: 38px;
+  height: 38px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 50%;
+}
+
+.bush .leaf-a {
+  left: 0;
+}
+
+.bush .leaf-b {
+  left: 24px;
+  bottom: 16px;
+}
+
+.bush .leaf-c {
+  left: 48px;
+}
+
+.mailbox {
+  position: absolute;
+  left: 72px;
+  bottom: 58px;
+  width: 84px;
+  height: 126px;
+}
+
+.mailbox-post {
+  position: absolute;
+  bottom: 0;
+  left: 34px;
+  width: 2px;
+  height: 74px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.mailbox-box {
+  position: absolute;
+  top: 18px;
+  left: 14px;
+  width: 54px;
+  height: 34px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 20px 20px 6px 6px;
+}
+
+.mailbox-flag {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 2px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.mailbox-flag::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 2px;
+  width: 14px;
+  height: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-left: none;
+}
+
+.yard-ground {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 28px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.weather-calm {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 86% 14%, rgba(255, 255, 255, 0.28), transparent 20%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.06));
+}
+
+.weather-calm span {
+  position: absolute;
+  width: 1px;
+  height: 72px;
+  background: linear-gradient(transparent, rgba(255, 255, 255, 0.42));
+  animation: calmRain 4.8s linear infinite;
+  opacity: 0.42;
+  transform: rotate(6deg);
+}
+
+@keyframes calmRain {
+  0% {
+    transform: translateY(-100px) translateX(-4px) rotate(6deg);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.42;
+  }
+
+  100% {
+    transform: translateY(105vh) translateX(16px) rotate(6deg);
+    opacity: 0;
+  }
+}
+
+.sun-glow {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(255, 255, 255, 0.4), transparent 12%),
+    radial-gradient(circle at 84% 16%, rgba(255, 255, 255, 0.22), transparent 18%);
+}
+
+.sun-beam {
+  position: absolute;
+  right: -40px;
+  background:
+    radial-gradient(ellipse at top right, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.1) 34%, rgba(255, 255, 255, 0.03) 60%, rgba(255, 255, 255, 0) 78%);
+  border-radius: 999px;
+  filter: blur(18px);
+  transform-origin: top right;
+  mix-blend-mode: screen;
+}
+
+.beam-main {
+  top: -80px;
+  width: 820px;
+  height: 720px;
+  opacity: 0.42;
+  transform: rotate(12deg);
+}
+
+.beam-secondary {
+  top: -20px;
+  width: 760px;
+  height: 860px;
+  opacity: 0.28;
+  transform: rotate(18deg);
+}
+
+.beam-soft {
+  top: 30px;
+  width: 980px;
+  height: 980px;
+  opacity: 0.2;
+  transform: rotate(8deg);
+}
+
+.beam-wide {
+  top: -120px;
+  width: 1200px;
+  height: 920px;
+  opacity: 0.14;
+  transform: rotate(14deg);
+}
+
+.beam-floor {
+  top: 140px;
+  width: 1000px;
+  height: 760px;
+  opacity: 0.12;
+  transform: rotate(20deg);
+}
+
+.beam-haze {
+  top: -40px;
+  width: 1400px;
+  height: 1200px;
+  opacity: 0.1;
+  transform: rotate(10deg);
+  filter: blur(34px);
+}
+
+.contact-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at top right, rgba(255, 255, 255, 0.12), transparent 36%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 34%);
+  mix-blend-mode: screen;
+}
+
+/* =========================
+   ROOM / PROJETOS
+========================= */
+.room-scene {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  padding: 130px 20px 20px;
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) 1fr;
+  align-items: center;
+  gap: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.room-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.room-copy h2 {
+  font-size: 56px;
+  font-weight: 600;
+}
+
+.room-copy p:last-child {
+  color: #cfcfcf;
+  max-width: 320px;
+}
+
+.living-room {
+  min-height: 500px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.room-frame {
+  width: min(720px, 100%);
+  height: 460px;
+  position: relative;
+}
+
+.room-frame::before {
+  content: "";
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  bottom: 26px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.picture-frame {
+  position: absolute;
+  top: 38px;
+  left: 50%;
+  width: 150px;
+  height: 108px;
+  transform: translateX(-50%);
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.picture-line {
+  position: absolute;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.92);
+  transform: rotate(-34deg);
+  transform-origin: left center;
+}
+
+.picture-line-a {
+  top: 36px;
+  left: 38px;
+  width: 42px;
+}
+
+.picture-line-b {
+  top: 58px;
+  left: 58px;
+  width: 30px;
+}
+
+.lamp {
+  position: absolute;
+  left: 36px;
+  bottom: 28px;
+  width: 120px;
+  height: 280px;
+}
+
+.lamp-shade {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  width: 78px;
+  height: 48px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-bottom-width: 3px;
+  clip-path: polygon(14% 0, 86% 0, 100% 100%, 0 100%);
+}
+
+.lamp-pole {
+  position: absolute;
+  top: 48px;
+  left: 58px;
+  width: 2px;
+  height: 178px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.lamp-base {
+  position: absolute;
+  bottom: 0;
+  left: 28px;
+  width: 64px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 10px;
+}
+
+.plant {
+  position: absolute;
+  right: 44px;
+  bottom: 30px;
+  width: 110px;
+  height: 170px;
+}
+
+.plant-pot {
+  position: absolute;
+  bottom: 0;
+  left: 24px;
+  width: 58px;
+  height: 44px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  clip-path: polygon(10% 0, 90% 0, 100% 100%, 0 100%);
+}
+
+.plant-leaf {
+  position: absolute;
+  bottom: 34px;
+  width: 42px;
+  height: 82px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 100% 0 100% 0;
+  background: transparent;
+}
+
+.leaf-one {
+  left: 18px;
+  transform: rotate(-18deg);
+}
+
+.leaf-two {
+  left: 42px;
+  height: 92px;
+  transform: rotate(10deg);
+}
+
+.leaf-three {
+  left: 54px;
+  width: 34px;
+  height: 74px;
+  transform: rotate(28deg);
+}
+
+.sofa {
+  position: absolute;
+  left: 50%;
+  bottom: 62px;
+  width: 340px;
+  height: 180px;
+  transform: translateX(-50%);
+}
+
+.sofa-back {
+  position: absolute;
+  inset: 0 24px 54px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 24px 24px 8px 8px;
+}
+
+.sofa-seat {
+  position: absolute;
+  left: 36px;
+  right: 36px;
+  bottom: 32px;
+  height: 54px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 12px;
+}
+
+.sofa-arm {
+  position: absolute;
+  bottom: 42px;
+  width: 40px;
+  height: 88px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 12px;
+}
+
+.sofa-arm.left {
+  left: 0;
+}
+
+.sofa-arm.right {
+  right: 0;
+}
+
+.sofa-leg {
+  position: absolute;
+  bottom: 0;
+  width: 2px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.leg-one {
+  left: 74px;
+}
+
+.leg-two {
+  right: 74px;
+}
+
+.coffee-table {
+  position: absolute;
+  left: 50%;
+  bottom: 26px;
+  width: 180px;
+  height: 76px;
+  transform: translateX(-50%);
+}
+
+.table-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 10px;
+}
+
+.table-leg {
+  position: absolute;
+  top: 18px;
+  width: 2px;
+  height: 58px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.table-leg.left {
+  left: 32px;
+}
+
+.table-leg.right {
+  right: 32px;
+}
+
+.table-book {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  width: 54px;
+  height: 16px;
+  transform: translateX(-50%) rotate(-6deg);
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  border-radius: 4px;
+}
+
+.room-floor {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: 0;
+  height: 14px;
+  border-top: 2px solid rgba(255, 255, 255, 0.92);
 }
 
 /* =========================
@@ -250,6 +2026,10 @@ main {
   opacity: 0.7;
 }
 
+#email {
+  word-break: break-all;
+}
+
 .email-box {
   display: flex;
   align-items: center;
@@ -273,14 +2053,12 @@ main {
   width: 16px;
   height: 16px;
   object-fit: contain;
-    background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
+  display: block;
 }
 
 .btn-copiar:focus {
-  outline: none;
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
 }
 
 /* =========================
@@ -288,15 +2066,13 @@ main {
 ========================= */
 #toast {
   position: fixed;
-  bottom: 2px;
+  bottom: 16px;
   left: 50%;
   transform: translateX(-50%);
-
   background: #1a1a1a;
   color: #ffffff;
   padding: 10px 20px;
   border-radius: 5px;
-
   opacity: 0;
   pointer-events: none;
   transition: 0.3s;
@@ -316,7 +2092,9 @@ main {
   border-top: 1px solid #1a1a1a;
   font-size: 14px;
   color: #bfbfbf;
-  margin-top: 250px;
+  margin-top: auto;
+  position: relative;
+  z-index: 2;
 }
 
 .footer a {
@@ -328,13 +2106,29 @@ main {
    RESPONSIVO
 ========================= */
 @media (max-width: 768px) {
-  .hero h1 {
-    font-size: 36px;
+  .hero-copy h1 {
+    font-size: 42px;
+  }
+
+  .hero-copy p {
+    font-size: 16px;
+  }
+
+  .hero {
+    padding: 40px 20px;
   }
 
   .cards {
     flex-direction: column;
     align-items: center;
+  }
+
+  .menu {
+    left: 20px;
+    right: 20px;
+    justify-content: flex-end;
+    gap: 16px;
+    flex-wrap: wrap;
   }
 
   .sobre-container {
@@ -345,33 +2139,275 @@ main {
   .texto {
     text-align: center;
   }
+
+  .contato-item {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 18px;
+  }
+
+  .email-box {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .home-scene {
+    padding-top: 120px;
+  }
+
+  .window-stage {
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .home-window {
+    width: min(420px, 92vw);
+  }
+
+  .hero-home {
+    width: min(420px, 92vw);
+  }
+
+  .room-scene {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding-top: 120px;
+  }
+
+  .room-copy {
+    text-align: center;
+    align-items: center;
+  }
+
+  .room-copy h2 {
+    font-size: 38px;
+  }
+
+  .living-room {
+    min-height: 360px;
+  }
+
+  .room-frame {
+    height: 320px;
+  }
+
+  .picture-frame {
+    width: 110px;
+    height: 80px;
+  }
+
+  .lamp {
+    left: 8px;
+    transform: scale(0.78);
+    transform-origin: bottom left;
+  }
+
+  .plant {
+    right: 8px;
+    transform: scale(0.8);
+    transform-origin: bottom right;
+  }
+
+  .sofa {
+    width: 240px;
+    height: 138px;
+  }
+
+  .coffee-table {
+    width: 130px;
+  }
+
+  .bedroom-scene {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding-top: 120px;
+  }
+
+  .bedroom-copy {
+    text-align: center;
+    align-items: center;
+  }
+
+  .bedroom-copy h2 {
+    font-size: 38px;
+  }
+
+  .bedroom {
+    min-height: 340px;
+  }
+
+  .bedroom-frame {
+    height: 320px;
+  }
+
+  .poster {
+    right: 30px;
+    width: 96px;
+    height: 126px;
+  }
+
+  .bed {
+    width: 270px;
+    height: 156px;
+    transform: translateX(-46%);
+  }
+
+  .nightstand {
+    left: 24px;
+    transform: scale(0.82);
+    transform-origin: bottom left;
+  }
+
+  .bed-lamp {
+    left: 36px;
+    bottom: 142px;
+    transform: scale(0.82);
+    transform-origin: bottom left;
+  }
+
+  .rug {
+    width: 180px;
+    height: 40px;
+    transform: translateX(-22%);
+  }
+
+  .bedroom-door {
+    right: 8px;
+    transform: scale(0.82);
+    transform-origin: bottom right;
+  }
+
+  .yard-scene {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding-top: 120px;
+  }
+
+  .yard-copy {
+    text-align: center;
+    align-items: center;
+  }
+
+  .yard-copy h2 {
+    font-size: 38px;
+  }
+
+  .yard {
+    min-height: 320px;
+  }
+
+  .yard-frame {
+    height: 300px;
+  }
+
+  .page-door {
+    right: 10px;
+    width: 72px;
+    height: 156px;
+  }
+
+  .cat-walk {
+    top: 520px;
+    bottom: auto;
+  }
+
+  .cat {
+    transform: scale(0.86);
+    transform-origin: bottom left;
+  }
+
+  .bird-outside {
+    --bird-scale: 0.86;
+  }
+
+  .sun-glow {
+    transform: scale(0.82);
+    transform-origin: top right;
+  }
+
+  .fence {
+    width: 92px;
+    height: 90px;
+  }
+
+  .fence::before {
+    box-shadow:
+      24px 0 0 rgba(255, 255, 255, 0.92),
+      48px 0 0 rgba(255, 255, 255, 0.92),
+      72px 0 0 rgba(255, 255, 255, 0.92);
+  }
+
+  .gate-door {
+    width: 160px;
+    height: 190px;
+  }
+
+  .door-leaf {
+    width: 68px;
+    height: 144px;
+  }
+
+  .bush-left {
+    left: 102px;
+  }
+
+  .bush-right {
+    right: 102px;
+  }
+
+  .mailbox {
+    left: 8px;
+    transform: scale(0.8);
+    transform-origin: bottom left;
+  }
+
+  .sobre-container {
+    flex-wrap: wrap-reverse;
+  }
+
+  .contact-section .contato-item {
+    align-items: center;
+    text-align: center;
+  }
 }
 
 /* =========================
    SKYFALL
 ========================= */
+.estrelas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.06), transparent 28%),
+    linear-gradient(180deg, rgba(15, 18, 26, 0.16), rgba(0, 0, 0, 0.38));
+}
 
 .estrelas span {
   position: absolute;
   width: 2px;
-  height: 60px;
-  background: linear-gradient(transparent, white);
-  animation: cair 4s linear infinite;
+  height: 170px;
+  background: linear-gradient(transparent, rgba(255, 255, 255, 0.98));
+  animation: cair 1.05s linear infinite;
+  opacity: 1;
+  pointer-events: none;
+  transform: rotate(10deg);
 }
 
-/* cada estrela */
 .estrelas::before,
 .estrelas::after {
   content: "";
   position: absolute;
   width: 2px;
-  height: 80px;
+  height: 190px;
   background: linear-gradient(transparent, white);
-  opacity: 0.7;
-  animation: cair 3s linear infinite;
+  opacity: 1;
+  animation: cair 0.95s linear infinite;
+  pointer-events: none;
+  transform: rotate(10deg);
 }
 
-/* posições diferentes */
 .estrelas::after {
   left: 60%;
   animation-delay: 1.5s;
@@ -381,17 +2417,81 @@ main {
   left: 30%;
 }
 
-/* animação */
-@keyframes cair {
-  0% {
-    transform: translateY(-100px) translateX(0);
-    opacity: 0;
-  }
-  30% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100vh) translateX(50px);
-    opacity: 0;
-  }
+.storm-flash {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.04), transparent 52%);
+}
+
+.flash {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background:
+    radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.95), transparent 26%),
+    radial-gradient(circle at 78% 22%, rgba(255, 255, 255, 0.84), transparent 22%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.34), transparent 48%);
+  mix-blend-mode: screen;
+}
+
+.flash-one {
+  animation: lightningFlash 4.2s linear infinite;
+}
+
+.flash-two {
+  animation: lightningFlash 5.1s linear infinite 0.8s;
+}
+
+.flash-three {
+  animation: lightningFlash 4.8s linear infinite 1.7s;
+}
+
+.lightning-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.lightning {
+  position: absolute;
+  width: 14px;
+  height: 320px;
+  opacity: 0;
+  filter: drop-shadow(0 0 24px rgba(255, 255, 255, 1));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.15));
+  clip-path: polygon(45% 0, 70% 0, 52% 28%, 76% 28%, 34% 100%, 44% 56%, 20% 56%);
+}
+
+.bolt-one {
+  top: 8%;
+  left: 18%;
+  transform: scale(1.55) rotate(8deg);
+  animation: lightningStrike 4.2s linear infinite;
+}
+
+.bolt-two {
+  top: 10%;
+  right: 16%;
+  transform: scale(1.28) rotate(-6deg);
+  animation: lightningStrike 5.1s linear infinite 0.8s;
+}
+
+.bolt-three {
+  top: 16%;
+  left: 72%;
+  transform: scale(1.16) rotate(4deg);
+  animation: lightningStrike 4.8s linear infinite 1.7s;
+}
+
+.home-scene::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02), transparent 20%, transparent 80%, rgba(255, 255, 255, 0.02)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 30%, rgba(0, 0, 0, 0.18));
+  pointer-events: none;
 }
