@@ -1,60 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfólio | Tai</title>
+  <title>Sobre | Tai</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="script.js" defer></script>
 </head>
-
-<div class="estrelas">
-  <span style="left:10%; animation-delay:0s;"></span>
-  <span style="left:25%; animation-delay:1s;"></span>
-  <span style="left:50%; animation-delay:2s;"></span>
-  <span style="left:75%; animation-delay:0.5s;"></span>
-  <span style="left:15%; animation-delay:0s;"></span>
-  <span style="left:30%; animation-delay:1s;"></span>
-  <span style="left:55%; animation-delay:2s;"></span>
-  <span style="left:85%; animation-delay:0.5s;"></span>
-</div>
 <body>
 
-      <!-- BOTÃO VOLTAR -->
   <div class="topo">
-    <a href="index.html" class="voltar">←</a>
+    <a href="index.html" class="voltar" aria-label="Voltar para a página inicial">←</a>
   </div>
 
-  <nav class="menu">
+  <a
+    href="contato.html"
+    class="page-door page-door-right"
+    aria-label="Ir para a página Contato"
+  >
+    <span class="page-door-frame"></span>
+    <span class="page-door-panel"></span>
+    <span class="page-door-knob"></span>
+    <span class="page-door-label">Contato</span>
+  </a>
+
+  <div class="cat-walk cat-about" aria-hidden="true">
+    <div class="cat">
+      <span class="cat-tail"></span>
+      <span class="cat-body"></span>
+      <span class="cat-head"></span>
+      <span class="cat-ear ear-left"></span>
+      <span class="cat-ear ear-right"></span>
+      <span class="cat-leg leg-front"></span>
+      <span class="cat-leg leg-mid-front"></span>
+      <span class="cat-leg leg-mid-back"></span>
+      <span class="cat-leg leg-back"></span>
+    </div>
+  </div>
+
+  <nav class="menu" aria-label="Navegação principal">
     <a href="index.html">Início</a>
-    <a href="sobre.html">Sobre</a>
     <a href="projetos.html">Projetos</a>
+    <a href="sobre.html">Sobre</a>
     <a href="contato.html">Contato</a>
   </nav>
 
-  <section id="sobre" class="secao">
-    <h2>Sobre mim</h2>
-    <p>
-      Me chamo João Eduardo, tenho 25 anos e atualmente estou cursando Análise e Desenvolvimento de Sistemas, no segundo período. 
-      Minha conexão com a tecnologia começou ainda na infância, quando a curiosidade me levou a explorar esse universo — e, com o tempo, essa curiosidade se transformou em uma verdadeira paixão pela programação.
-    </p>
-        <p>
-     Hoje, sigo em constante evolução como desenvolvedor, buscando construir uma base sólida e consistente. 
-     Tenho me dedicado ao aprendizado do Java, acreditando que dominar bem os fundamentos é o que sustenta um crescimento real e duradouro na área.
-    </p>
-    <p>
-      Gosto de desenvolver soluções que realmente fazem sentido no dia a dia, seja para resolver problemas práticos ou para tornar processos mais simples e eficientes. 
-      Para mim, programar não é apenas escrever código, mas criar algo útil, funcional e que tenha impacto.
-    </p>
-    <p>
-      Atualmente, meu foco está em continuar evoluindo tecnicamente, colocando em prática tudo o que aprendo e buscando oportunidades que me desafiem a crescer cada vez mais como desenvolvedor.
-    </p>
-  </section>
+  <main>
+    <section class="about-page">
+      <section class="bedroom-scene" aria-label="Quarto ilustrado">
+        <div class="bedroom-copy">
+          <p class="hero-eyebrow">Bedroom</p>
+          <h2>Sobre mim</h2>
+          <p>Um quarto simples para representar o lado mais pessoal da jornada: descanso, foco, rotina e evolução constante.</p>
+        </div>
 
-    <img src="sui.jpeg" alt="Foto de Tai" class="foto">
+        <div class="bedroom" aria-hidden="true">
+          <div class="bedroom-frame">
+            <div class="interior-door bedroom-door">
+              <span class="interior-door-frame"></span>
+              <span class="interior-door-panel"></span>
+              <span class="interior-door-knob"></span>
+            </div>
+
+            <div class="poster">
+              <span class="poster-line line-one"></span>
+              <span class="poster-line line-two"></span>
+            </div>
+
+            <div class="bed">
+              <span class="bed-headboard"></span>
+              <span class="bed-mattress"></span>
+              <span class="bed-pillow pillow-left"></span>
+              <span class="bed-pillow pillow-right"></span>
+              <span class="bed-blanket"></span>
+              <span class="bed-leg leg-left"></span>
+              <span class="bed-leg leg-right"></span>
+            </div>
+
+            <div class="nightstand">
+              <span class="nightstand-top"></span>
+              <span class="nightstand-body"></span>
+              <span class="nightstand-drawer"></span>
+              <span class="nightstand-knob"></span>
+            </div>
+
+            <div class="bed-lamp">
+              <span class="bed-lamp-shade"></span>
+              <span class="bed-lamp-pole"></span>
+              <span class="bed-lamp-base"></span>
+            </div>
+
+            <div class="rug">
+              <span class="rug-line rug-a"></span>
+              <span class="rug-line rug-b"></span>
+            </div>
+
+            <div class="bedroom-floor"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="sobre" class="secao about-text-section">
+        <div class="sobre-container">
+          <div class="texto">
+            <p>
+              Me chamo João Eduardo, tenho 25 anos e atualmente estou cursando Análise e Desenvolvimento de Sistemas, no segundo período.
+              Minha conexão com a tecnologia começou ainda na infância, quando a curiosidade me levou a explorar esse universo e, com o tempo,
+              essa curiosidade se transformou em uma verdadeira paixão pela programação.
+            </p>
+            <p>
+              Hoje, sigo em constante evolução como desenvolvedor, buscando construir uma base sólida e consistente.
+              Tenho me dedicado ao aprendizado de Java, acreditando que dominar bem os fundamentos é o que sustenta um crescimento real e duradouro na área.
+            </p>
+            <p>
+              Gosto de desenvolver soluções que realmente fazem sentido no dia a dia, seja para resolver problemas práticos ou para tornar processos mais simples e eficientes.
+              Para mim, programar não é apenas escrever código, mas criar algo útil, funcional e que tenha impacto.
+            </p>
+            <p>
+              Atualmente, meu foco está em continuar evoluindo tecnicamente, colocando em prática tudo o que aprendo e buscando oportunidades que me desafiem a crescer cada vez mais como desenvolvedor.
+            </p>
+          </div>
+
+          <img src="sui.jpeg" alt="Foto de Tai" class="foto">
+        </div>
+      </section>
+    </section>
+  </main>
 
   <footer class="footer">
-    <p>© 2026 - Tai</p>
-    <a href="https://github.com/tai-zz" target="_blank">GitHub</a>
+    <p>&copy; 2026 - Tai</p>
+    <a href="https://github.com/tai-zz" target="_blank" rel="noopener noreferrer">GitHub</a>
   </footer>
-
-
 </body>
+</html>
