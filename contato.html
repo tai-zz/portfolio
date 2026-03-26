@@ -1,68 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfólio | Tai</title>
+  <title>Contato | Tai</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </head>
-
-<div class="estrelas">
-  <span style="left:10%; animation-delay:0s;"></span>
-  <span style="left:25%; animation-delay:1s;"></span>
-  <span style="left:50%; animation-delay:2s;"></span>
-  <span style="left:75%; animation-delay:0.5s;"></span>
-  <span style="left:15%; animation-delay:0s;"></span>
-  <span style="left:30%; animation-delay:1s;"></span>
-  <span style="left:55%; animation-delay:2s;"></span>
-  <span style="left:85%; animation-delay:0.5s;"></span>
-</div>
-
 <body>
-
-      <!-- BOTÃO VOLTAR -->
-  <div class="topo">
-    <a href="index.html" class="voltar">←</a>
+  <div class="weather-calm" aria-hidden="true">
+    <span style="left:10%; animation-delay:0s;"></span>
+    <span style="left:25%; animation-delay:1s;"></span>
+    <span style="left:50%; animation-delay:2s;"></span>
+    <span style="left:75%; animation-delay:0.5s;"></span>
+    <span style="left:15%; animation-delay:0s;"></span>
+    <span style="left:30%; animation-delay:1s;"></span>
+    <span style="left:55%; animation-delay:2s;"></span>
+    <span style="left:85%; animation-delay:0.5s;"></span>
   </div>
 
-  <nav class="menu">
+  <div class="sun-glow" aria-hidden="true">
+    <span class="sun-beam beam-main"></span>
+    <span class="sun-beam beam-secondary"></span>
+    <span class="sun-beam beam-soft"></span>
+    <span class="sun-beam beam-wide"></span>
+    <span class="sun-beam beam-floor"></span>
+    <span class="sun-beam beam-haze"></span>
+  </div>
+
+  <div class="bird-outside is-hidden" aria-hidden="true">
+    <div class="bird-figure">
+      <span class="bird-body"></span>
+      <span class="bird-head"></span>
+      <span class="bird-beak"></span>
+      <span class="bird-eye"></span>
+      <span class="bird-tail"></span>
+      <span class="bird-leg bird-leg-left"></span>
+      <span class="bird-leg bird-leg-right"></span>
+      <span class="bird-wing wing-left"></span>
+      <span class="bird-wing wing-right"></span>
+    </div>
+  </div>
+
+  <div class="topo">
+    <a href="index.html" class="voltar" aria-label="Voltar para a página inicial">←</a>
+  </div>
+
+  <nav class="menu" aria-label="Navegação principal">
     <a href="index.html">Início</a>
     <a href="sobre.html">Sobre</a>
     <a href="projetos.html">Projetos</a>
-    <a href="contato.html">Contato</a>
+    <a href="contato.html" class="ativo">Contato</a>
   </nav>
 
-<section class="secao contato">
-  <h2>Contato</h2>
-
-  <div class="contato-container">
-
-    <div class="contato-item">
-      <span><i class="fab fa-github"></i> GitHub</span>
-      <a href="https://github.com/tai-zz" target="_blank">github.com/tai-zz</a>
-    </div>
-
-    <div class="contato-item">
-      <span><i class="fas fa-envelope"></i> Email</span>
-      <div class="email-box">
-        <a id="email">joaoeduardopino@gmail.com</a>
-        <div onclick="copiarEmail()" class="btn-copiar">
-          <img src="copiar.png" alt="Copiar">
+  <main>
+    <section class="contact-page">
+      <section class="yard-scene" aria-label="Quintal ilustrado">
+        <div class="yard-copy">
+          <p class="hero-eyebrow">Backyard</p>
+          <h2>Contato</h2>
+          <p>Saindo da casa para a rua: o quintal abre caminho para falar comigo e continuar a conversa fora da janela.</p>
         </div>
-      </div>
-    </div>
 
-    <div class="contato-item">
-      <span><i class="fab fa-instagram"></i> Instagram</span>
-      <a href="https://www.instagram.com/zsuiix_/" target="_blank">@zsuiix_</a>
-    </div>
+        <div class="yard" aria-hidden="true">
+          <div class="yard-frame">
+            <div class="fence fence-left"></div>
+            <div class="fence fence-right"></div>
 
-  </div>
-</section>
+            <div class="gate-door">
+              <span class="door-frame"></span>
+              <span class="door-leaf left"></span>
+              <span class="door-leaf right"></span>
+              <span class="door-knob"></span>
+              <span class="path path-left"></span>
+              <span class="path path-right"></span>
+            </div>
+
+            <div class="bush bush-left">
+              <span class="bush-leaf leaf-a"></span>
+              <span class="bush-leaf leaf-b"></span>
+              <span class="bush-leaf leaf-c"></span>
+            </div>
+
+            <div class="bush bush-right">
+              <span class="bush-leaf leaf-a"></span>
+              <span class="bush-leaf leaf-b"></span>
+              <span class="bush-leaf leaf-c"></span>
+            </div>
+
+            <div class="mailbox">
+              <span class="mailbox-post"></span>
+              <span class="mailbox-box"></span>
+              <span class="mailbox-flag"></span>
+            </div>
+
+            <div class="yard-ground"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="secao contact-section">
+        <div class="contato-container">
+          <div class="contato-item">
+            <span><i class="fab fa-github" aria-hidden="true"></i> GitHub</span>
+            <a href="https://github.com/tai-zz" target="_blank" rel="noopener noreferrer">github.com/tai-zz</a>
+          </div>
+
+          <div class="contato-item">
+            <span><i class="fas fa-envelope" aria-hidden="true"></i> Email</span>
+            <div class="email-box">
+              <span id="email">joaoeduardopino@gmail.com</span>
+              <button type="button" onclick="copiarEmail()" class="btn-copiar" aria-label="Copiar e-mail">
+                <img src="copiar.png" alt="">
+              </button>
+            </div>
+          </div>
+
+          <div class="contato-item">
+            <span><i class="fab fa-instagram" aria-hidden="true"></i> Instagram</span>
+            <a href="https://www.instagram.com/zsuiix_/" target="_blank" rel="noopener noreferrer">@zsuiix_</a>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
 
   <footer class="footer">
-    <p>© 2026 - Tai</p>
-    <a href="https://github.com/tai-zz" target="_blank">GitHub</a>
+    <p>&copy; 2026 - Tai</p>
+    <a href="https://github.com/tai-zz" target="_blank" rel="noopener noreferrer">GitHub</a>
   </footer>
-  <div id="toast">Email copiado</div>
+
+  <div id="toast" role="status" aria-live="polite"></div>
 </body>
+</html>
